@@ -1,7 +1,4 @@
 "use strict"
-const sqlite = require('sqlite3').verbose()
-
-//SQL STATEMENT
 
 class Student {
   constructor(firstName, lastName, phone, cohortId, id){
@@ -12,11 +9,8 @@ class Student {
     this.cohortId = cohortId
   }
 
-  //Driver Code
-  // Student.update(dbModel.connection, new Student("firstname","lastname",phone,cohortId))
   static create(db, data){
     let SEED_DATA_STUDENT = `INSERT INTO students(firstName, lastName, phone,cohortId) VALUES('${data.firstName}','${data.lastName}','${data.phone}','${data.cohortId}')`
-    console.log(SEED_DATA_STUDENT);
     db.serialize(function(){
       db.run(SEED_DATA_STUDENT, function(err) {
         err ? console.log(err):console.log(`SEED DATA STUDENT SUCCESSFUL`)
@@ -33,8 +27,8 @@ class Student {
     })
   }
 
-  static delete(db, data){
-    let DELETE_DATA_STUDENT = `DELETE FROM students WHERE id = '${data.id}'`
+  static delete(db, id){
+    let DELETE_DATA_STUDENT = `DELETE FROM students WHERE id = '${id}'`
     db.serialize(function(){
       db.run(DELETE_DATA_STUDENT, function(err) {
         err ? console.log(err):console.log(`DELETE DATA STUDENT SUCCESSFUL`);
