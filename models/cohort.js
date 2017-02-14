@@ -26,8 +26,8 @@ class Cohort {
   static delete(db, id){
     let DELETE_DATA_COHORT = `DELETE FROM cohorts WHERE id = '${id}'`
     db.serialize(function(){
-      db.run(DELETE_DATA_STUDENT, function(err) {
-        err ? console.log(err):console.log(`DELETE DATA STUDENT SUCCESSFUL`);
+      db.run(DELETE_DATA_COHORT, function(err) {
+        err ? console.log(err):console.log(`DELETE DATA COHORT SUCCESSFUL`);
       })
     })
   }
