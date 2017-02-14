@@ -19,7 +19,7 @@ class Student {
   }
 
   static update(db, data){
-    let EDIT_DATA_STUDENT  = `UPDATE students SET firstName = '${data.firstName}', lastName = '${data.lastName}', phone = '${data.phone}', cohortId = '${data.cohortId}' WHERE id = '${data.id}'`
+    let EDIT_DATA_STUDENT  = `UPDATE students SET firstName = '${data.firstName}', lastName = '${data.lastName}', phone = '${data.phone}', cohortId = '${data.cohortId}' WHERE id = ${data.id}`
     db.serialize(function(){
       db.run(EDIT_DATA_STUDENT, function(err){
         err ? console.log(err):console.log(`UPDATE DATA STUDENT SUCCESSFUL`);

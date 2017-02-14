@@ -1,8 +1,9 @@
 "use strict"
 
 class Cohort {
-  constructor(name){
+  constructor(name, id){
     this.name = name
+    this.id = id
   }
 
   static create(db, data){
@@ -15,7 +16,7 @@ class Cohort {
   }
 
   static update(db, data){
-    let EDIT_DATA_COHORT  = `UPDATE cohorts SET name = '${data.name}'`
+    let EDIT_DATA_COHORT  = `UPDATE cohorts SET name = '${data.name}' WHERE id = ${data.id}`
     db.serialize(function(){
       db.run(EDIT_DATA_COHORT, function(err){
         err ? console.log(err):console.log(`UPDATE DATA COHORT SUCCESSFUL`);
