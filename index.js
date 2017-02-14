@@ -9,11 +9,23 @@ import Student from "./models/student.js";
 let db = new DBModel("./db/student.db")
 let argv = process.argv[2]
 
+class Help {
+  static help() {
+    console.log('ADD NEW STUDENT/COHORT...........: insert(\'firstname\', \'lastname\', \'phone\')');
+    console.log('REMOVE STUDENT/COHORT............: delete(id)  ');
+    console.log('UPDATE STUDENT\'s DETAIL..........: update(\'firstname\', \'lastname\', \'phone\', \'id\')  ');
+    console.log('SHOW ALL STUDENTS/COHORT.........: see the code for a test drive case!!');
+    console.log('FIND BY ID/ALL STUDENT/COHORT....: see the code for a test drive case!!');
+    console.log('WHERE STUDENT/COHORT.............: see the code for a test drive case!!');
+  }
+}
+
 if (argv == "playtime") {
   let start = repl.start('> ')
   start.context.dbModel = db
   start.context.Student = Student
   start.context.Cohort  = Cohort
+  start.context.Help = Help.help
 }
 
 
