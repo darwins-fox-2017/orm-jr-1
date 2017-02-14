@@ -3,7 +3,7 @@ const sqlite = require('sqlite3').verbose()
 
 //SQL STATEMENT
 let CREATE_COHORTS  = "CREATE TABLE IF NOT EXISTS cohorts (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)"
-let CREATE_STUDENTS = "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT NOT NULL, lastName TEXT, phone INTEGER, cohortId INTEGER, FOREIGN KEY (cohortId) REFERENCES cohorts (id))"
+let CREATE_STUDENTS = "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT NOT NULL UNIQUE, lastName TEXT, phone INTEGER, cohortId INTEGER, FOREIGN KEY (cohortId) REFERENCES cohorts (id))"
 
 class DBModel {
   constructor(file){
