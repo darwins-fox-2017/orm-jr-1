@@ -21,7 +21,7 @@ if (argv == 'playtime') {
 // Student.update(dbModel.connection, new Student("sam", "ganeng",1234567,1,1))
 // Student.delete(dbModel.connection, 1)
 // Student.findById(dbModel.connection, 1)
-//
+
 // Student.findAll(dbModel.connection, function(data, err){
 //   if(!err){
 //     for(let i = 0; i < data.length; i++){
@@ -32,7 +32,7 @@ if (argv == 'playtime') {
 //   }
 // })
 
-// Student.where(dbModel.connection, "firstName = 'ganteng'", function(err, data){
+// Student.where(dbModel.connection, "firstName = 'ganteng '", function(err, data){
 //   if(!err){
 //     for(let i = 0; i < data.length; i++){
 //       console.log(data[i])

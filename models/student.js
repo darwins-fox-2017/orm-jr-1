@@ -55,12 +55,14 @@ class Student {
     })
   }
 
-  static where(db, value, data){
-    let query_where = "SELECT * FROM students WHERE "
+  static where(db, value, callback){
+    let query_where = `SELECT * FROM students WHERE ${value}`
     db.serialize(function(){
-      db.all(query_where + value, data)
+      db.all(query_where, callback)
     })
   }
+
+
 
 }
 
