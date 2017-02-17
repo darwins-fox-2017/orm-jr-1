@@ -16,5 +16,6 @@ if(command === 'playtime') {
   let start = repl.start('> ')
   start.context.dbmodel = db
   start.context.Student = Student
+  start.context.Cohort =  Cohort
   // start.context.tokek = 'tokek'
 }

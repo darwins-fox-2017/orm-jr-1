@@ -23,6 +23,20 @@ class Student {
     })
   }
 
+  static read(connection, data) {
+    let db = connection
+    let read_data_student = `SELECT * FROM student`;
+    db.serialize(function() {
+      db.each(read_data_student, function(err, row) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(row);
+        }
+      });
+    })
+  }
+
   static update(connection, student) {
     let db = connection
     let UpdateDataStudent = `UPDATE student SET firstname = '${firstname}', lastname = '${lastname}' WHERE id = ${id};`
@@ -79,7 +93,6 @@ class Student {
   static where(connection, value, callback) {
     let db = connection
     let where = `SELECT * FROM student WHERE`
-
 
     db.serialize(function() {
       db.all(where + value, callback)
