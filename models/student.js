@@ -1,10 +1,11 @@
 "use strict"
 
 class Student {
-  constructor(firstname, lastname, cohort_id) {
+  constructor(firstname, lastname, cohort_id, id) {
     this.firstname = firstname
     this.lastname = lastname
     this.cohort_id = cohort_id
+    this.id = id
   }
 
   static create(connection, data) {
@@ -37,10 +38,10 @@ class Student {
     })
   }
 
-  static update(connection, student) {
+  static update(connection, data) {
     let db = connection
-    let UpdateDataStudent = `UPDATE student SET firstname = '${firstname}', lastname = '${lastname}' WHERE id = ${id};`
-
+    let UpdateDataStudent = `UPDATE student SET firstname = '${data.firstname}', lastname = '${data.lastname}', cohort_id = ${data.cohort_id} WHERE id = ${data.id};`
+    //console.log(UpdateDataStudent);
     db.serialize(function() {
       db.run(UpdateDataStudent, function(err) {
         if(err) {
@@ -67,37 +68,49 @@ class Student {
     })
   }
 
-  static findById(connection, id) {
+  static findById(connection, data) {
     let db = connection
-    let findById = `SELECT * FROM student WHERE id = ${id}`
+    let findById = `SELECT * FROM student WHERE id = ${data}`;
+    //console.log(findById);
     db.serialize(function() {
-      db.each(findById, function(err) {
+      db.each(findById, function(err, row) {
         if(err) {
           console.log(err);
         } else {
-          console.log(data);
+          console.log(`ID : ${row.id}`);
+          console.log(`Nama Depan : ${row.firstname}`);
+          console.log(`Nama Belakang : ${row.lastname}`);
+          console.log(`ID Cohort : ${row.cohort_id}`);
         }
       })
     })
   }
 
-  static findAll(connection, callback) {
+  static findAll(connection, data) {
     let db = connection
     let findAll = `SELECT * FROM student`
 
     db.serialize(function() {
-      db.all(findAll, callback)
+      db.all(findAll, function(err, row) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(row);
+        }
+      })
     })
   }
 
-  static where(connection, value, callback) {
+
+
+  static where(connection, value, data) {
     let db = connection
-    let where = `SELECT * FROM student WHERE`
+    let where_student = `SELECT * FROM student WHERE`
 
     db.serialize(function() {
-      db.all(where + value, callback)
+      db.all(where_student + value, data)
     })
   }
 }
 
-export default Student
+export default 
